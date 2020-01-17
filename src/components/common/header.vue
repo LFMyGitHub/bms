@@ -2,25 +2,26 @@
     <div class="header">
         <el-row :gutter="10"><!--gutter属性来调整布局之间的宽度-->
             <!--Logo响应式布局-->
-            <el-col :xs="12" :sm="12" :md="4">
+            <el-col :xs="12" :sm="12" :md="3">
                 <div class="logo">
                     <span class="logo_prefix">JSPan</span><span class="logo_suffix">Admin</span>
                 </div>
             </el-col>
 
             <!--Search-->
-            <el-col :xs="12" :sm="12" :md="8">
+            <el-col :xs="12" :sm="12" :md="6">
                 <div class="search">
-                    <el-input 
+                    <el-input
                         size="small"
+                        v-model="search"
                         placeholder="Search for...">
-                        <el-button slot="append" icon="search"/>
+                        <el-button slot="append" icon="el-icon-search"></el-button>
                     </el-input>
                 </div>
             </el-col>
 
             <!--网址，可以搞个跑马灯通知消息-->
-            <el-col :xs="24" :sm="12" :md="4">
+            <el-col :xs="24" :sm="12" :md="7">
                 <div class="website">
                     <span>Website:</span>
                     <span>www.jspan.com</span>
@@ -45,13 +46,13 @@
                                 <el-dropdown-item v-for="dialog in dialogs" :key="dialog.time" divided>
                                     <div class="pop-div">
                                         <span class="pop-image">
-                                            <image :src="dialog.header" width="50px"/>
+                                            <img :src="dialog.header" width="50px"/>
                                         </span>
                                         <span class="pop-content">
                                             {{dialog.content}}
                                         </span>
                                         <span class="pop-time">
-                                            {{dialog.tome}}分钟前
+                                            {{dialog.time}}分钟前
                                         </span>
                                     </div>
                                 </el-dropdown-item>
@@ -59,6 +60,7 @@
                         </el-dropdown>
                     </el-col>
                     <el-col :span="8">
+                        <!--任务下拉列表-->
                         <el-dropdown menu-align="start">
                             <span>
                                 <el-badge :value="3" class="item">
@@ -67,7 +69,7 @@
                             </span>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>
-                                    <span>You have new tasks! </span>
+                                    <span class="pop-title">You have new tasks! </span>
                                 </el-dropdown-item>
 
                                 <el-dropdown-item v-for="task in tasks" :key="task.id" divided>
@@ -78,10 +80,10 @@
                                             <el-tag type="success" v-if="task.rank==3">正常</el-tag>
                                         </span>
                                         <span class="task-span task-content">
-                                            {{task.content}}<br/>
-                                        </span>
+                                        {{task.content}}<br/>
                                         <span class="task-time">
                                             截止:{{task.overtime}}
+                                        </span>
                                         </span>
                                         <span class="task-span task-btn">
                                             <el-button type="primary" size="mini">完成</el-button>
@@ -91,6 +93,35 @@
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-col>
+                </div>
+            </el-col>
+
+            <el-col :xs="8" :sm="8" :md="2">
+                <div class="user-header">
+                    <el-dropdown>
+                        <img src="../../../static/images/b_header.jpg" width="50px">
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item>
+                                <div class="setting-div">
+                                    <span class="setting-icon"><i class="material-icons">account_box</i></span>
+                                    <span class="setting-string">Profile 个人</span>
+                                </div>
+                            </el-dropdown-item>
+                            <el-dropdown-item divided>
+                                <div class="setting-div">
+                                    <span class="setting-icon"><i class="material-icons">settings</i></span>
+                                    <span class="setting-string">Setting 设置</span>
+                                </div>
+                            </el-dropdown-item>
+                            <el-dropdown-item divided>
+                                <div class="setting-div">
+                                    <span class="setting-icon"><i class="material-icons">assignment_return</i></span>
+                                    <span class="setting-string">Sign out 退出</span>
+                                </div>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                        
+                    </el-dropdown>
                 </div>
             </el-col>
         </el-row>
@@ -112,7 +143,8 @@ export default {
                 {id:1,rank:1,content:'完成JSPangAdmin头部头部组件的编写。',overtime:'2019/12/12'},
                 {id:2,rank:2,content:'完成GitHub仓库的初始化工作。',overtime:'2019/12/22'},
                 {id:3,rank:3,content:'在阿里云进行网站备案，完成后通知组长。',overtime:'2019/12/25'},
-            ]
+            ],
+            search:''
         }
     }
 }
@@ -219,5 +251,27 @@ export default {
         float: right;
         color:#ccc;
     }
-
+    .user-header{
+        line-height: 10px;
+        padding-top: 7px;
+        font-size: 12px;
+    }
+    .user-header img{
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .setting-div{
+        height: 30px;
+        line-height: 30px;
+        clear: both;
+    }
+    .setting-div span{
+        display: block;
+        float: left;
+        font-size: 12px;
+    }
+    .setting-icon{
+        padding-top: 3px;
+        padding-right: 3px;
+    }
 </style>
