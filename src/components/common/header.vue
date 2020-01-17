@@ -23,8 +23,8 @@
             <!--网址，可以搞个跑马灯通知消息-->
             <el-col :xs="24" :sm="12" :md="7">
                 <div class="website">
-                    <span>Website:</span>
-                    <span>www.jspan.com</span>
+                    <span>项目地址:</span>
+                    <span><a href="https://github.com/LFMyGitHub/bms" target="_blank">https://github.com/LFMyGitHub/bms</a></span>
                 </div>
             </el-col>
 
@@ -146,6 +146,11 @@ export default {
             ],
             search:''
         }
+    },
+    methods: {
+        tz:function(){
+            window.open('https://github.com/LFMyGitHub/bms',"_blank")
+        }
     }
 }
 </script>
@@ -180,12 +185,24 @@ export default {
         color: #fff;
         font-size: 14px;
     }
+    a:visited{	/*默认状态*/
+        color:#209e91;
+    }
+    a:hover{	/*悬浮状态*/
+        color:#209e91;
+    }
+    a:active{	/*激活过的*/
+        color: #209e91;
+    }
     .website span{
         display: inline-block;
         color: #209e91
     }
     .website span:first-child{
         color:#fff
+    }
+    .website span:nth-child(2){
+        cursor: pointer;
     }
     .header-right{
         padding-top: 25px;
