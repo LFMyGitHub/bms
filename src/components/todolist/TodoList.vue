@@ -1,7 +1,9 @@
 <template>
   <div>
     <input
+      type="text"
       class="my-input"
+      ref="getValue"
       v-model="inputContent"
       placeholder="Take to do"
       v-on:keyup.enter="onEnter"
@@ -40,8 +42,8 @@ export default {
   methods: {
     onEnter: function() {
       if (this.inputContent != "") {
-        var ss = this.inputContent;
-        this.listContents.splice(0, 0, "有毒吧");
+        var listContent={content:this.$refs.getValue.value,isDone:true};
+        this.listContents.splice(0, 0, listContent);
         this.inputContent = "";
       }
     }
